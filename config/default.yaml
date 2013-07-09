@@ -1,0 +1,43 @@
+mongodb:
+  server:   127.0.0.1
+  database: uptime
+  user:     uptime 
+  password: krakow132!
+  connectionString:       # alternative to setting server, database, user and password separately
+
+monitor:
+  name:                   origin
+  apiUrl:                 'http://localhost:80/api' # must be accessible without a proxy
+  pollingInterval:        10000      # ten seconds
+  timeout:                5000       # five seconds
+  userAgent:              AppMinotaur 1.0 (http://appminotaur.com)
+
+analyzer:
+  updateInterval:         60000      # one minute
+  qosAggregationInterval: 600000     # ten minutes
+  pingHistory:            8035200000 # three months
+
+autoStartMonitor: true
+
+server:
+  port:     80
+
+email:
+  method:      SMTP  # possible methods are SMTP, SES, or Sendmail
+  transport:         # see https://github.com/andris9/nodemailer for transport options
+    service:   Gmail # see https://github.com/andris9/Nodemailer/blob/master/lib/wellknown.js for well-known services
+    host:      smtp.mailgun.org
+    auth:            
+      user:    postmaster@appminotaur.mailgun.org      # The email account username, e.g. 'username@gmail.com'
+      pass:    8bmz9mq28a36      # The email account password, e.G. 'password'
+  event:
+    up:        true
+    down:      true
+    paused:    true
+    restarted: true
+  message:           
+    from:            # The message sender, e.g. 'Fred Foo <foo@blurdybloop.com>'
+    to:              # The message recipient, e.g. 'bar@blurdybloop.com, baz@blurdybloop.com'
+  dashboardUrl: 'http://localhost:80'
+
+verbose: false # only used in dev
